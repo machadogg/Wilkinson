@@ -45,6 +45,7 @@ void calculateImpedances(int N, double Z0, double ZL) {
     Zs[n + 1] = Zs[n] * exp(pow(2, -N) * BinCoeff(N, n) * log(ZL / Z0));
   }
 
+  Zs[0] = ZL;
   for (int n = 1; n <= N; n++) {
 
     printf("Zs[%d] = %lf\n", n, Zs[n]);
