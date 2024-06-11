@@ -13,10 +13,18 @@ int main(int argc, char *argv[]) {
 
   double Z0 = 100.0;
   double ZL = 50.0;
+  char *eptr;
 
-  if (argc > 1) {
+  if (argc == 2) {
     uint8_t N = atoi(argv[1]);
     calculateImpedances(N, Z0, ZL);
+
+  } else if (argc == 4) {
+    uint8_t N = atoi(argv[1]);
+    Z0 = strtod(argv[2], &eptr);
+    ZL = strtod(argv[3], &eptr);
+    calculateImpedances(N, Z0, ZL);
+
   } else {
 
     uint8_t N = 1;
@@ -46,7 +54,7 @@ void calculateImpedances(int N, double Z0, double ZL) {
   }
 
   Zs[0] = ZL;
-  for (int n = 1; n <= N; n++) {
+  for (int n = 0; n <= N; n++) {
 
     printf("Zs[%d] = %lf\n", n, Zs[n]);
   }
